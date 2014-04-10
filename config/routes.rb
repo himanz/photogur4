@@ -1,7 +1,7 @@
 Photogur4::Application.routes.draw do
+  root :to => "images#index"
   get 'images' => 'images#index' 
 
-  resources :images
   get 'images/new' => "images#new"
   post 'images' => "images#create"
 
