@@ -8,9 +8,20 @@ class ImagesController < ApplicationController
 	end
 
 	def new
+		@pic = Hello.new
 	end
 
 	def create
-		render :text => "Saving a picture. URL: #{params[:url]}, Title: #{params[:title]}, Artist: #{params[:artist]}"
+		@pic = Hello.new(image_params)
+		if @pic.save
+			redirect_to images_url
+		else
+			render :new
+		end
+	end
+
+	private
+	def image_params
+		params.require(:hello).permit(:artist, :title, :url)
 	end
 end
